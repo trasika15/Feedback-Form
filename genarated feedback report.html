@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Feedback Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background-color: #f2f2f2;
+    }
+    h1 {
+      color: #333;
+    }
+    form {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+    #report {
+      margin-top: 30px;
+      padding: 15px;
+      border-radius: 10px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+      display: none;
+    }
+    h2 {
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Feedback Form</h1>
+
+  <!-- Feedback Form -->
+  <form id="feedbackForm">
+    <label for="name">Your Name:</label><br>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="email">Your Email:</label><br>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="feedback">Your Feedback:</label><br>
+    <textarea id="feedback" name="feedback" rows="4" required></textarea><br><br>
+
+    <input type="submit" value="Submit">
+  </form>
+
+  <!-- Feedback Report -->
+  <div id="report">
+    <h2>📝 Generated Feedback Report</h2>
+    <p><strong>Name:</strong> <span id="rName"></span></p>
+    <p><strong>Email:</strong> <span id="rEmail"></span></p>
+    <p><strong>Feedback:</strong></p>
+    <p id="rFeedback"></p>
+    <p><strong>Submission Date:</strong> <span id="rDate"></span></p>
+    <p><strong>Status:</strong> ✅ Successfully Submitted</p>
+  </div>
+
+  <!-- JavaScript Section -->
+  <script>
+    document.getElementById("feedbackForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent page refresh
+
+      // Get form values
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const feedback = document.getElementById("feedback").value;
+
+      // Set report content
+      document.getElementById("rName").textContent = name;
+      document.getElementById("rEmail").textContent = email;
+      document.getElementById("rFeedback").textContent = feedback;
+      document.getElementById("rDate").textContent = new Date().toLocaleString();
+
+      // Show the report section
+      document.getElementById("report").style.display = "block";
+
+      // Optionally clear the form
+      document.getElementById("feedbackForm").reset();
+    });
+  </script>
+
+</body>
+</html>
